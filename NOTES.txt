@@ -1,0 +1,8 @@
+- What if we failed to publish an event ?
+    + vid #333
+    + save both the resource and th event in the DB .. wrap the saving operations
+      in a transaction .. a separate process watches for new events and emits them
+      to the event-bus and marks them and "sent"
+- Concurrency
+    + vid #298-301
+    + long story .. in short, version each resource doc .. watch vids dude

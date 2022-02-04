@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+deploy:
+    kubectl:
+        manifests:
+            - infra/k8s/*
+build:
+    local:
+        push: false
+    artifacts:
+        - context: auth
+          image: jamalalhneidi/auth
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.ts'
+                    dest: .
+        - context: client
+          image: jamalalhneidi/client
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: '**/*.js'
+                    dest: .
+        - context: tickets
+          image: jamalalhneidi/tickets
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.js'
+                    dest: .
+        - context: orders
+          image: jamalalhneidi/orders
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.js'
+                    dest: .
+        - context: expiration
+          image: jamalalhneidi/expiration
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.js'
+                    dest: .
+        - context: payments
+          image: jamalalhneidi/payments
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.js'
+                    dest: .
