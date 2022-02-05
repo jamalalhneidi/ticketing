@@ -47,6 +47,5 @@ const start = async () => {
 };
 
 start().catch((e) => {
-
     console.error(e);
 });
