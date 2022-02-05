@@ -4,6 +4,7 @@ import app from './app';
 const PORT = 3000;
 
 const start = async () => {
+    console.log('Starting up');
     const { JWT_KEY, MONGO_URI } = process.env;
     if (!JWT_KEY || !MONGO_URI) throw new Error('ENV VARS missing');
     await mongoose.connect(MONGO_URI);
