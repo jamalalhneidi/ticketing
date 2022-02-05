@@ -1,0 +1,10 @@
+name: test-%name
+
+on: pull_request
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: cd %name && npm i && npm run test:ci
