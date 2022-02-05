@@ -1,6 +1,9 @@
 name: test-%name
 
-on: pull_request
+on:
+    pull_request:
+        paths:
+            - '%name/**'
 
 jobs:
     build:
