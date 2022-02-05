@@ -16,9 +16,6 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
-    build:
-        runs-on: ubuntu-latest
-        steps:
             - uses: actions/checkout@v2
             - run: cd common && docker build -t jamalalhneidi/common .
             - run: docker push jamalalhneidi/common

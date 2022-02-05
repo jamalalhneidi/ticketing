@@ -16,9 +16,6 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
-    build:
-        runs-on: ubuntu-latest
-        steps:
             - uses: actions/checkout@v2
             - run: cd expiration && docker build -t jamalalhneidi/expiration .
             - run: docker push jamalalhneidi/expiration

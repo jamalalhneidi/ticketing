@@ -16,9 +16,6 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
-    build:
-        runs-on: ubuntu-latest
-        steps:
             - uses: actions/checkout@v2
             - run: cd client && docker build -t jamalalhneidi/client .
             - run: docker push jamalalhneidi/client
