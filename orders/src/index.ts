@@ -45,6 +45,7 @@ const start = async () => {
         console.log(`Listening on ${PORT}`);
     });
 };
+
 start().catch((e) => {
     console.error(e);
 });
