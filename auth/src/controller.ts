@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import User from './models/User';
 import { Exception } from '@jagittix/common';
+import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import User from './models/User';
 
 export const currentUser = async (req: Request, res: Response) => {
     res.status(200).send({ user: req.user });

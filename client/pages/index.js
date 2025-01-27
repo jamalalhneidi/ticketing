@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
 const index = ({ user, tickets }) => {
-    const ticketList = tickets.map((ticket) => {
+    console.log(user);
+    const ticketList = tickets?.map((ticket) => {
         return (
             <tr key={ticket.id}>
                 <td>

@@ -1,58 +1,59 @@
-apiVersion: skaffold/v2beta26
+apiVersion: skaffold/v4beta12
 kind: Config
-deploy:
-    kubectl:
-        manifests:
-            - infra/k8s/*
 build:
-    local:
-        push: false
     artifacts:
-        - context: auth
-          image: jamalalhneidi/auth
-          docker:
-              dockerfile: Dockerfile
+        - image: jamalalhneidi/auth
+          context: auth
           sync:
               manual:
-                  - src: 'src/**/*.ts'
+                  - src: src/**/*.ts
                     dest: .
-        - context: client
-          image: jamalalhneidi/client
           docker:
               dockerfile: Dockerfile
+        - image: jamalalhneidi/client
+          context: client
           sync:
               manual:
                   - src: '**/*.js'
                     dest: .
-        - context: tickets
-          image: jamalalhneidi/tickets
           docker:
               dockerfile: Dockerfile
+        - image: jamalalhneidi/tickets
+          context: tickets
           sync:
               manual:
-                  - src: 'src/**/*.js'
+                  - src: src/**/*.js
                     dest: .
-        - context: orders
-          image: jamalalhneidi/orders
           docker:
               dockerfile: Dockerfile
+        - image: jamalalhneidi/orders
+          context: orders
           sync:
               manual:
-                  - src: 'src/**/*.js'
+                  - src: src/**/*.js
                     dest: .
-        - context: expiration
-          image: jamalalhneidi/expiration
           docker:
               dockerfile: Dockerfile
+        - image: jamalalhneidi/expiration
+          context: expiration
           sync:
               manual:
-                  - src: 'src/**/*.js'
+                  - src: src/**/*.js
                     dest: .
-        - context: payments
-          image: jamalalhneidi/payments
           docker:
               dockerfile: Dockerfile
+        - image: jamalalhneidi/payments
+          context: payments
           sync:
               manual:
-                  - src: 'src/**/*.js'
+                  - src: src/**/*.js
                     dest: .
+          docker:
+              dockerfile: Dockerfile
+    local:
+        push: false
+manifests:
+    rawYaml:
+        - infra/k8s/*
+deploy:
+    kubectl: {}

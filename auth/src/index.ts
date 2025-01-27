@@ -7,6 +7,7 @@ const start = async () => {
     console.log('Starting up');
     const { JWT_KEY, MONGO_URI } = process.env;
     if (!JWT_KEY || !MONGO_URI) throw new Error('ENV VARS missing');
+    console.log(JWT_KEY);
     await mongoose.connect(MONGO_URI);
     console.log(
         `Connected to ${MONGO_URI.substring(

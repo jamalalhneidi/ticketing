@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import axios from 'axios';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Header = ({ user }) => {
@@ -55,7 +55,7 @@ const Header = ({ user }) => {
     return (
         <nav className="navbar navbar-light bg-light">
             <Link href="/">
-                <a className="navbar-brand">GitTix</a>
+                <a className="navbar-brand">Ticketing</a>
             </Link>
             <div className="d-flex justify-content-end">
                 <ul className="nav d-flex align-items-center">{links}</ul>

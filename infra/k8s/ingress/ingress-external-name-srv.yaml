@@ -5,4 +5,4 @@ metadata:
     namespace: ingress-nginx
 spec:
     type: ExternalName
-    externalName: ingress-nginx-srv
+    externalName: ingress-nginx-service
