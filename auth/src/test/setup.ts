@@ -9,7 +9,7 @@ declare global {
 }
 
 beforeAll(async () => {
-    process.env.JWT_KEY = 'shit';
+    process.env.JWT_KEY = 'JWT_KEY';
     mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
     await mongoose.connect(mongoUri);
@@ -31,8 +31,8 @@ global.signup = async () => {
     const res = await request(app)
         .post('/api/users/signup')
         .send({
-            email: 'shit@shit.com',
-            password: 'shit',
+            email: 'test@test.com',
+            password: 'test',
         })
         .expect(201);
     return res.get('Set-Cookie');

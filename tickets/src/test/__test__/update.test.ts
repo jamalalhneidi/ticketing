@@ -1,9 +1,9 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { routes } from '../../router';
 import Ticket from '../../models/ticket';
-import mongoose from 'mongoose';
 import nats from '../../nats-client';
+import { routes } from '../../router';
 
 const createTicket = async () => {
     const userId = new mongoose.Types.ObjectId().toHexString();
@@ -17,7 +17,7 @@ it('401 not signed in', async () => {
     await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            title: 'shit',
+            title: 'title',
             price: 2,
         })
         .expect(401);
@@ -28,7 +28,7 @@ it('400 no body fields', async () => {
     await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            // title: 'shit',
+            // title: 'title',
             // price: 2
         })
         .set('Cookie', global.signin(ticket.userId))
@@ -41,7 +41,7 @@ it('403 updating a ticket owned by another', async () => {
     await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            title: 'shit',
+            title: 'title',
             price: 2,
         })
         .set('Cookie', global.signin(userId))
@@ -53,7 +53,7 @@ it('404 ticket not found', async () => {
     await request(app)
         .patch(routes.update.replace(':id', ticketId))
         .send({
-            title: 'shit',
+            title: 'title',
             price: 2,
         })
         .set('Cookie', global.signin())
@@ -79,7 +79,7 @@ it('200 update successful', async () => {
     const res2 = await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            // title: 'shit',
+            // title: 'title',
             price: 22,
         })
         .set('Cookie', global.signin(ticket.userId))
@@ -90,17 +90,16 @@ it('200 update successful', async () => {
     const res3 = await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            title: 'shit',
+            title: 'title',
             // price: 2
         })
         .set('Cookie', global.signin(ticket.userId))
         .expect(200);
     expect(res3.body.ticket.price).toEqual(22);
-    expect(res3.body.ticket.title).toEqual('shit');
+    expect(res3.body.ticket.title).toEqual('title');
 
     expect(nats.client.publish).toHaveBeenCalledTimes(3);
 });
-
 
 it('400 no body fields', async () => {
     const ticket = await createTicket();
@@ -110,7 +109,7 @@ it('400 no body fields', async () => {
     await request(app)
         .patch(routes.update.replace(':id', ticket.id))
         .send({
-            title: 'shit',
+            title: 'title',
             // price: 2
         })
         .set('Cookie', global.signin(ticket.userId))

@@ -22,7 +22,7 @@ const useRequest = ({ url, method, body, onSuccess }) => {
             console.log(e.response.data);
             setErrors(
                 <div className="alert alert-danger">
-                    <h4>Oh Shit!</h4>
+                    <h4>Oh No!</h4>
                     <ul className="my-0">
                         {e.response.data.errors.map((err, i) => (
                             <li key={i}>{err.message}</li>

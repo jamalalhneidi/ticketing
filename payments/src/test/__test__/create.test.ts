@@ -1,11 +1,11 @@
+import { OrderStatus } from '@jagittix/common';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { routes } from '../../router';
-import mongoose from 'mongoose';
 import Order from '../../models/order';
-import { OrderStatus } from '@jagittix/common';
-import stripe from '../../stripe';
 import Payment from '../../models/payment';
+import { routes } from '../../router';
+import stripe from '../../stripe';
 
 jest.mock('../../stripe');
 
@@ -26,7 +26,7 @@ it('400 missing body fields', async () => {
         .post(routes.create)
         .set('Cookie', cookie)
         .send({
-            token: 'shit',
+            token: 'token',
         })
         .expect(400);
     await request(app)
@@ -38,7 +38,7 @@ it('400 missing body fields', async () => {
         .post(routes.create)
         .set('Cookie', cookie)
         .send({
-            token: 'shit',
+            token: 'token',
             orderId: 'new mongoose.Types.ObjectId().toHexString()',
         })
         .expect(400);
@@ -50,7 +50,7 @@ it('404 order not found', async () => {
         .post(routes.create)
         .set('Cookie', cookie)
         .send({
-            token: 'shit',
+            token: 'token',
             orderId: new mongoose.Types.ObjectId().toHexString(),
         })
         .expect(404);
@@ -70,7 +70,7 @@ it('400 order cancelled', async () => {
         .post(routes.create)
         .set('Cookie', cookie)
         .send({
-            token: 'shit',
+            token: 'token',
             orderId: order.id,
         })
         .expect(400);
@@ -90,7 +90,7 @@ it('403 unauthorized', async () => {
         .post(routes.create)
         .set('Cookie', cookie)
         .send({
-            token: 'shit',
+            token: 'token',
             orderId: order.id,
         })
         .expect(403);

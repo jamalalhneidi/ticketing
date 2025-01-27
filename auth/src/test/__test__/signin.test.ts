@@ -5,8 +5,8 @@ it('400 invalid', async () => {
     return request(app)
         .post('/api/users/signin')
         .send({
-            email: 'shit@shit.com',
-            password: 'shit',
+            email: 'test@test.com',
+            password: 'test',
         })
         .expect(400);
 });

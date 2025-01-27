@@ -1,6 +1,6 @@
+import jwt from 'jsonwebtoken';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 let mongo: MongoMemoryServer;
 
 declare global {
@@ -9,7 +9,7 @@ declare global {
 jest.mock('../nats-client');
 
 beforeAll(async () => {
-    process.env.JWT_KEY = 'shit';
+    process.env.JWT_KEY = 'test';
     mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
     await mongoose.connect(mongoUri);
@@ -32,7 +32,7 @@ afterAll(async () => {
 global.signin = (id?: string) => {
     const payload = {
         id: id || new mongoose.Types.ObjectId().toHexString(),
-        email: 'shit@shit.com',
+        email: 'test@test.com',
     };
     const token = jwt.sign(payload, process.env.JWT_KEY!);
     const session = { token };

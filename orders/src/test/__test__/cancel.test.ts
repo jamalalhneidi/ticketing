@@ -1,16 +1,16 @@
+import { OrderStatus } from '@jagittix/common';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { routes } from '../../router';
-import mongoose from 'mongoose';
 import Order from '../../models/order';
 import Ticket from '../../models/ticket';
-import { OrderStatus } from '@jagittix/common';
 import nats from '../../nats-client';
+import { routes } from '../../router';
 
 it('204 order marked as cancelled', async () => {
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
-        title: 'shit',
+        title: 'title',
         price: 20,
     });
     await ticket.save();
@@ -38,7 +38,7 @@ it('204 order marked as cancelled', async () => {
 it('emit cancel event', async () => {
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
-        title: 'shit',
+        title: 'title',
         price: 20,
     });
     await ticket.save();

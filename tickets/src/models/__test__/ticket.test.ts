@@ -1,9 +1,9 @@
-import Ticket from '../ticket';
 import mongoose from 'mongoose';
+import Ticket from '../ticket';
 
 it('throw outdated error', async () => {
     const ticket = Ticket.build({
-        title: 'shit',
+        title: 'title',
         price: 20,
         userId: new mongoose.Types.ObjectId().toHexString(),
     });
@@ -25,7 +25,7 @@ it('throw outdated error', async () => {
 
 it('increment version number', async () => {
     const ticket = Ticket.build({
-        title: 'shit',
+        title: 'title',
         price: 20,
         userId: new mongoose.Types.ObjectId().toHexString(),
     });

@@ -1,10 +1,10 @@
-import request from 'supertest';
-import Ticket from '../../models/ticket';
-import mongoose from 'mongoose';
-import app from '../../app';
-import { routes } from '../../router';
-import Order from '../../models/order';
 import { OrderStatus } from '@jagittix/common';
+import mongoose from 'mongoose';
+import request from 'supertest';
+import app from '../../app';
+import Order from '../../models/order';
+import Ticket from '../../models/ticket';
+import { routes } from '../../router';
 
 it('200', async () => {
     const expiresAt = new Date();
@@ -16,7 +16,7 @@ it('200', async () => {
     for (let i = 0; i < user1Orders; i++) {
         const ticket = Ticket.build({
             id: new mongoose.Types.ObjectId().toHexString(),
-            title: 'shit',
+            title: 'title',
             price: 234,
         });
         await ticket.save();
@@ -33,7 +33,7 @@ it('200', async () => {
     for (let i = 0; i < user2Orders; i++) {
         const ticket = Ticket.build({
             id: new mongoose.Types.ObjectId().toHexString(),
-            title: 'shit',
+            title: 'title',
             price: 234,
         });
         await ticket.save();

@@ -1,8 +1,8 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { routes } from '../../router';
 import Ticket from '../../models/ticket';
-import mongoose from 'mongoose';
+import { routes } from '../../router';
 
 it('not found', async () => {
     await request(app)
@@ -18,7 +18,7 @@ it('not found', async () => {
 
 it('returns ticket if found', async () => {
     const ticket = Ticket.build({
-        title: 'shit',
+        title: 'title',
         price: 10,
         userId: 'shsishihhfsif',
     });

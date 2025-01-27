@@ -1,10 +1,10 @@
+import { OrderStatus } from '@jagittix/common';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { routes } from '../../router';
-import mongoose from 'mongoose';
 import Order from '../../models/order';
 import Ticket from '../../models/ticket';
-import { OrderStatus } from '@jagittix/common';
+import { routes } from '../../router';
 
 it('404 order not found', async () => {
     const userId = new mongoose.Types.ObjectId().toHexString();
@@ -17,7 +17,7 @@ it('404 order not found', async () => {
 it('403 unauthorized', async () => {
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
-        title: 'shit',
+        title: 'title',
         price: 20,
     });
     await ticket.save();
@@ -39,7 +39,7 @@ it('403 unauthorized', async () => {
 it('200 success', async () => {
     const ticket = Ticket.build({
         id: new mongoose.Types.ObjectId().toHexString(),
-        title: 'shit',
+        title: 'title',
         price: 20,
     });
     await ticket.save();
